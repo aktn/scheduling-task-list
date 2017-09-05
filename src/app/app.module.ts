@@ -1,3 +1,4 @@
+import { SchedulingAppModule } from './../scheduling-app/scheduling-app.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,12 +13,15 @@ import { AppComponent } from './containers/app/app.component';
 // components
 
 // routes
-export const ROUTES: Routes = [];
+export const ROUTES: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'schedule' }
+];
 
 @NgModule({
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    SchedulingAppModule
   ],
   declarations: [
     AppComponent
