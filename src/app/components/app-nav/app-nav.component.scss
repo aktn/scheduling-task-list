@@ -1,0 +1,24 @@
+.app-nav{
+    background: #232323;
+    a{
+        min-width: 160px;
+        color: #fff;
+        display: inline-block;
+        padding: 10px 0;
+        font-size: 17px;
+        font-weight: 600px;
+        border-bottom: 3px solid transparent;
+        text-align: center;
+        &:hover,
+        &.active{
+            color: #dcf7f6;
+            border-bottom-color: #7ebbea; 
+        }
+    }
+}
+
+.wrapper{
+    max-width: 1000px;
+    width: 97%;
+    margin: 0 auto;
+}

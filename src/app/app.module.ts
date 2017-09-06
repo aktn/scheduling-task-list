@@ -1,3 +1,4 @@
+import { AppNavComponent } from './components/app-nav/app-nav.component';
 import { SchedulingAppModule } from './../scheduling-app/scheduling-app.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,7 +25,8 @@ export const ROUTES: Routes = [
     SchedulingAppModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    AppNavComponent
   ],
   providers: [
     Store

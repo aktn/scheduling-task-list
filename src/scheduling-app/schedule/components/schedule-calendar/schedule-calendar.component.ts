@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'schedule-calendar',
     styleUrls: ['schedule-calendar.component.scss'],
     template: `
         <div class="">
+            {{ date | json }}
         </div>
     `
 })
 
-export class ScheduleCalendarComponent{}
+export class ScheduleCalendarComponent{
+    @Input()
+    date: Date;
+}
