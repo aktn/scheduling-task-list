@@ -1,0 +1,26 @@
+.schedule-controls{
+    height: 50px;
+    padding: 15px 0;
+    position: relative;
+    text-align: center;
+    button{
+        position: absolute;
+        width: 45px;
+        height: 45px;
+        transition: all .2 ease-in-out;
+        cursor: pointer;
+        background-color: #eda495;
+        top: -1px;
+        &:first-child {
+            left: -1px;
+        }
+        &:last-child {
+            right: -1px;
+        }
+    }
+    p {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 700;
+    }
+}

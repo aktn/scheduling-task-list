@@ -1,3 +1,4 @@
+import { ScheduleControlsComponent } from './components/schedule-controls/schedule-controls.component';
 import { SharedModule } from './../shared/shared.module';
 import { ScheduleComponent } from './containers/schedule/schedule.component';
 import { ScheduleCalendarComponent } from './components/schedule-calendar/schedule-calendar.component';
@@ -17,7 +18,8 @@ export const ROUTES: Routes = [
     ],
     declarations: [
         ScheduleComponent,
-        ScheduleCalendarComponent
+        ScheduleCalendarComponent,
+        ScheduleControlsComponent
     ]
 })
 
