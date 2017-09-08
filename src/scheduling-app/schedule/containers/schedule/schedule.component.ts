@@ -34,6 +34,7 @@ export class ScheduleComponent implements OnInit, OnDestroy{
     }
 
     changeDate(date: Date){
+        console.log(date);
         this.scheduleService.updateDate(date);
     }
 

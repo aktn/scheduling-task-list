@@ -3,19 +3,25 @@
     padding: 15px 0;
     position: relative;
     text-align: center;
+    margin: 0 40px;
     button{
         position: absolute;
         width: 45px;
         height: 45px;
         transition: all .2 ease-in-out;
         cursor: pointer;
-        background-color: #eda495;
+        border: 1px solid #c1cedb;
         top: -1px;
+        outline: 0;
+        background: #f9f9f9;
         &:first-child {
             left: -1px;
         }
         &:last-child {
             right: -1px;
+        }
+        &:hover {
+            background: darken(#f9f9f9, 5%);
         }
     }
     p {
