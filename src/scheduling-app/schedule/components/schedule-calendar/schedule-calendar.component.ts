@@ -1,3 +1,4 @@
+import { ScheduleItem, ScheduleList } from './../../../shared/services/schedule/schedule.service';
 import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -7,6 +8,7 @@ import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core
         <div class="schedule-calendar">
             <schedule-controls [selected]="selectedDay" (move)="onChange($event)"></schedule-controls>
             <schedule-days [selected]="selectedDayIndex" (select)="selectDay($event)"></schedule-days>
+            <schedule-section *ngFor="let section of sections" [name]="section.name" [section]="getSection(section.key)"></schedule-section>
         </div>
     `
 })
@@ -23,8 +25,22 @@ export class ScheduleCalendarComponent implements OnChanges{
         this.selectedDay = new Date(date.getTime());
     }
 
+    @Input()
+    items: ScheduleList;
+
     @Output()
     change = new EventEmitter<Date>();
+
+    sections = [
+        { key: 'cleaning', name: 'Cleaning' },
+        { key: 'supply_stock', name: 'Supplying Stock'},
+        { key: 'check_stock', name: 'Checking Stock'},
+        { key: 'cashier', name: 'Cashier' }
+    ]
+
+    getSection(name: string): ScheduleItem{
+        return this.items && this.items[name] || {};
+    }
 
     onChange(weekOffset: number) {
         const startOfWeek = this.getStartOfWeek(new Date());

@@ -1,5 +1,5 @@
 import { Store } from 'store';
-import { ScheduleService } from './../../../shared/services/schedule/schedule.service';
+import { ScheduleService, ScheduleItem } from './../../../shared/services/schedule/schedule.service';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
     styleUrls: ['schedule.component.scss'],
     template: `
         <div class="schedule">
-            <schedule-calendar [date]="date$ | async" (change)="changeDate($event)"></schedule-calendar>
+            <schedule-calendar [date]="date$ | async" (change)="changeDate($event)" ></schedule-calendar>
         </div>
     `
 })
@@ -19,6 +19,9 @@ export class ScheduleComponent implements OnInit, OnDestroy{
 
     date$: Observable<Date>;
     subscriptions: Subscription[] = [];
+    schedule$: Observable<ScheduleItem[]>;
+    
+    open = true;
 
     constructor(
         private scheduleService: ScheduleService,
@@ -27,6 +30,7 @@ export class ScheduleComponent implements OnInit, OnDestroy{
 
     ngOnInit(){
         this.date$ = this.store.select('date');
+        this.schedule$ = this.store.select('schedule');
 
         this.subscriptions = [
             this.scheduleService.schedule$.subscribe()

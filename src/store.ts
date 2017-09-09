@@ -1,3 +1,4 @@
+import { ScheduleItem } from './scheduling-app/shared/services/schedule/schedule.service';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -6,11 +7,13 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 export interface State {
   [key: string]: any,
-  date: Date
+  date: Date,
+  schedule: ScheduleItem[]
 }
 
 const state: State = {
-  date: undefined
+  date: undefined,
+  schedule: undefined
 };
 
 export class Store {
