@@ -1,4 +1,3 @@
-import { AppNavComponent } from './components/app-nav/app-nav.component';
 import { SchedulingAppModule } from './../scheduling-app/scheduling-app.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -37,8 +36,7 @@ export const config: FirebaseAppConfig = {
     AngularFireDatabaseModule,
   ],
   declarations: [
-    AppComponent,
-    AppNavComponent
+    AppComponent
   ],
   providers: [
     Store

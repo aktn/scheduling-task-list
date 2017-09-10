@@ -1,3 +1,4 @@
+import { Staff } from './scheduling-app/shared/services/staff/staff.service';
 import { ScheduleItem } from './scheduling-app/shared/services/schedule/schedule.service';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -9,13 +10,15 @@ export interface State {
   [key: string]: any,
   date: Date,
   schedule: ScheduleItem[],
-  selected: any
+  selected: any,
+  staff: Staff[];
 }
 
 const state: State = {
   date: undefined,
   schedule: undefined,
-  selected: undefined
+  selected: undefined,
+  staff: undefined
 };
 
 export class Store {

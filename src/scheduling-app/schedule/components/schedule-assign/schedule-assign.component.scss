@@ -1,0 +1,80 @@
+.schedule-assign {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__modal {
+        background: #fff;
+        box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+        max-width: 800px;
+        border: 1px solid #97a8b9;
+        border-radius: 3px; 
+        overflow: hidden;
+    }
+    &__title {
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        background: #f6fafd;
+        border-bottom: 1px solid #c1cedb;
+        h1 {
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            margin: 0 35px 0 0;
+            padding: 0;
+            img {
+                width: 50px;
+                height: 50px;
+                margin-right: 12px;
+            }
+        }
+    }
+    &__form{
+        
+    }
+
+}
+
+input {
+    outline: 0;
+    font-size: 16px;
+    padding: 10px 40px 10px 15px;
+    margin: 20px;
+    background: #fff;
+    color: #545e6f;
+    flex-grow: 1;
+    border: 1px solid #d1deeb;
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
+    &:focus {
+        border-color: #a5b9ce;
+    }
+    &::-webkit-input-placeholder {
+        color: #aaa;
+    }
+}
+.button {
+    align-items: center;
+    color: #fff;
+    margin-right: 15px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    background: #e07e5e;
+    border-radius: 5px;
+    padding: 6px 20px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    height: 30px;
+}
+

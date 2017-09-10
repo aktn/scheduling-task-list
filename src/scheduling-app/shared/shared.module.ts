@@ -1,3 +1,4 @@
+import { StaffService } from './services/staff/staff.service';
 import { ScheduleService } from './services/schedule/schedule.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -20,7 +21,8 @@ export class SharedModule{
         return{
             ngModule: SharedModule,
             providers: [
-                ScheduleService
+                ScheduleService,
+                StaffService
             ]
         }
     }
