@@ -8,7 +8,7 @@ import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core
         <div class="schedule-calendar">
             <schedule-controls [selected]="selectedDay" (move)="onChange($event)"></schedule-controls>
             <schedule-days [selected]="selectedDayIndex" (select)="selectDay($event)"></schedule-days>
-            <schedule-section *ngFor="let section of sections" [name]="section.name" [section]="getSection(section.key)"></schedule-section>
+            <schedule-section *ngFor="let section of sections" [name]="section.name" [section]="getSection(section.key)" (select)="selectSection($event, section.key)"></schedule-section>
         </div>
     `
 })
@@ -72,5 +72,13 @@ export class ScheduleCalendarComponent implements OnChanges{
         const day = date.getDay();
         const diff = date.getDate() - day + (day === 0 ? -6 : 1);
         return new Date(date.setDate(diff));
+    }
+
+    @Output() select = new EventEmitter<any>();
+    selectSection({ assigned, data}: any, section: string){
+        const day = this.selectedDay;
+        this.select.emit({
+            assigned, section, day, data
+        });
     }
 }

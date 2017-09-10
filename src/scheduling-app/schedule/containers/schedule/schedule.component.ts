@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
     styleUrls: ['schedule.component.scss'],
     template: `
         <div class="schedule">
-            <schedule-calendar [date]="date$ | async" (change)="changeDate($event)" ></schedule-calendar>
+            <schedule-calendar [date]="date$ | async" (change)="changeDate($event)" (select)="changeSection($event)"></schedule-calendar>
         </div>
     `
 })
@@ -20,8 +20,7 @@ export class ScheduleComponent implements OnInit, OnDestroy{
     date$: Observable<Date>;
     subscriptions: Subscription[] = [];
     schedule$: Observable<ScheduleItem[]>;
-    
-    open = true;
+    selected$: Observable<any>;
 
     constructor(
         private scheduleService: ScheduleService,
@@ -31,15 +30,20 @@ export class ScheduleComponent implements OnInit, OnDestroy{
     ngOnInit(){
         this.date$ = this.store.select('date');
         this.schedule$ = this.store.select('schedule');
+        this.selected$ = this.store.select('selected');
 
         this.subscriptions = [
-            this.scheduleService.schedule$.subscribe()
+            this.scheduleService.selected$.subscribe(),
+            this.scheduleService.schedule$.subscribe(),
         ];
     }
 
     changeDate(date: Date){
-        console.log(date);
         this.scheduleService.updateDate(date);
+    }
+
+    changeSection(event: any){
+        this.scheduleService.selectSection(event);
     }
 
     ngOnDestroy(){

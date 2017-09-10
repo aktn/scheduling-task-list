@@ -1,5 +1,5 @@
 import { ScheduleItem } from './../../../shared/services/schedule/schedule.service';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'schedule-section',
@@ -10,12 +10,11 @@ import { Component, Input } from '@angular/core';
                 <span>{{ name }}</span>
             </div>
             <div>
-                <div class="schedule-section__task"
-                    *ngIf="section.tasks; else assignTask">
+                <div class="schedule-section__task" *ngIf="section.tasks; else assignTask">
                     <span>{{ section.tasks }}</span>
                 </div>
                 <ng-template #assignTask>
-                    <div class="schedule-section__task">
+                    <div class="schedule-section__task" (click)="onSelect()">
                         Assign member
                     </div>
                 </ng-template>
@@ -27,9 +26,16 @@ import { Component, Input } from '@angular/core';
 export class ScheduleSectionComponent{
     constructor(){}
 
-    @Input()
-    section: ScheduleItem;
+    @Input() section: ScheduleItem;
 
-    @Input()
-    name: string;
+    @Input() name: string;
+
+    @Output() select = new EventEmitter<any>();
+
+    onSelect(assigned: string[] = []){
+        const data = this.section;
+        this.select.emit({
+            assigned, data
+        });
+    }
 }

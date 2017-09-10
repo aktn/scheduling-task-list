@@ -8,12 +8,14 @@ import 'rxjs/add/operator/distinctUntilChanged';
 export interface State {
   [key: string]: any,
   date: Date,
-  schedule: ScheduleItem[]
+  schedule: ScheduleItem[],
+  selected: any
 }
 
 const state: State = {
   date: undefined,
-  schedule: undefined
+  schedule: undefined,
+  selected: undefined
 };
 
 export class Store {

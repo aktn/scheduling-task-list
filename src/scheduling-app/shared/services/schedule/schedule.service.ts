@@ -8,6 +8,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/withLatestFrom';
+import { Subject } from 'rxjs/Subject';
 
 export interface ScheduleItem{
     $key?: string,
@@ -31,6 +32,7 @@ export interface ScheduleList{
 @Injectable()
 export class ScheduleService{
     private date$ = new BehaviorSubject(new Date());
+    private section$ = new Subject();
 
     schedule$: Observable<any[]> = this.date$
         .do((next: any)=> this.store.set('date', next))
@@ -51,6 +53,8 @@ export class ScheduleService{
         })
         .do((next: any) => this.store.set('schedule', next));
 
+    selected$ = this.section$.do((next: any)=> this.store.set('selected', next));
+
     constructor(
         private db: AngularFireDatabase,
         private store: Store
@@ -68,6 +72,10 @@ export class ScheduleService{
                 endAt
             }
         });
+    }
+
+    selectSection(event: any){
+        this.section$.next(event);
     }
 
 }
