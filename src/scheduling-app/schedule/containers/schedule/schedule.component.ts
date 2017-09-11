@@ -2,7 +2,7 @@ import { Staff, StaffService } from './../../../shared/services/staff/staff.serv
 import { Store } from 'store';
 import { ScheduleService, ScheduleItem } from './../../../shared/services/schedule/schedule.service';
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
     template: `
         <div class="schedule">
             <schedule-calendar [date]="date$ | async" (change)="changeDate($event)" (select)="changeSection($event)"></schedule-calendar>
-            <schedule-assign *ngIf="open" (create)="createStaff($event)"></schedule-assign>
+            <schedule-assign *ngIf="open" (create)="createStaff($event)" [staff]="staff$ | async" (close)="closeAssign()" (assign)="assignStaff($event)"></schedule-assign>
         </div>
     `
 })
@@ -25,6 +25,7 @@ export class ScheduleComponent implements OnInit, OnDestroy{
     subscriptions: Subscription[] = [];
     schedule$: Observable<ScheduleItem[]>;
     selected$: Observable<any>;
+    staff$: Observable<Staff[]>;
 
     constructor(
         private scheduleService: ScheduleService,
@@ -36,10 +37,12 @@ export class ScheduleComponent implements OnInit, OnDestroy{
         this.date$ = this.store.select('date');
         this.schedule$ = this.store.select('schedule');
         this.selected$ = this.store.select('selected');
+        this.staff$ = this.store.select('staff');
 
         this.subscriptions = [
             this.scheduleService.selected$.subscribe(),
             this.scheduleService.schedule$.subscribe(),
+            this.staffSerice.staff$.subscribe()
         ];
     }
 
@@ -54,6 +57,14 @@ export class ScheduleComponent implements OnInit, OnDestroy{
 
     async createStaff(event: Staff){
         await this.staffSerice.createStaff(event);
+    }
+
+    closeAssign(){
+        this.open = false;
+    }
+    
+    assignStaff(staff: string[]){
+        console.log(staff);
     }
 
     ngOnDestroy(){

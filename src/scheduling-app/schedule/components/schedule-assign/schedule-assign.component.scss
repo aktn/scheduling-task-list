@@ -38,9 +38,29 @@
         }
     }
     &__form{
-        
+        border-bottom: 1px solid #c1cedb;
     }
-
+    &__list {
+        border-radius: 2px;
+        border: 1px solid #c1cedb;
+        margin: 20px;
+        height: 160px;
+        overflow-y: scroll;
+        div {
+            border-bottom: 1px solid #d1deeb;
+            cursor: pointer;
+            padding: 8px 10px 8px 35px;
+            background: url(/img/check.svg) no-repeat 8px 9px;
+            background-size: 20px 20px;
+            transition: all .2s ease-in-out;
+            &.active {
+                background-image: url(/img/check-active.svg);
+            }
+        }
+        &.active {
+            background-image: url(/img/check-active.svg);
+        }
+    }
 }
 
 input {
@@ -76,5 +96,27 @@ input {
     font-size: 13px;
     text-transform: uppercase;
     height: 30px;
+}
+.btn {
+    align-items: center;
+    color: #fff;
+    margin: 15px 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    background: #e07e5e;
+    border-radius: 2px;
+    padding: 6px 20px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    height: 30px;
+    &:hover{
+        color: #6dd8e0; 
+    }
+    &--cancel {
+        color: #545e6f;
+        background: #fff;
+    }
 }
 
