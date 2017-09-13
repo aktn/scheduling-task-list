@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
     styleUrls: ['schedule.component.scss'],
     template: `
         <div class="schedule">
-            <schedule-calendar [date]="date$ | async" (change)="changeDate($event)" (select)="changeSection($event)"></schedule-calendar>
+            <schedule-calendar [date]="date$ | async" (change)="changeDate($event)" (select)="changeSection($event)" [assignStaff]="schedule$ | async"></schedule-calendar>
             <schedule-assign *ngIf="open" (create)="createStaff($event)" [staff]="staff$ | async" (close)="closeAssign()" (assign)="assignStaff($event)"></schedule-assign>
         </div>
     `
@@ -42,6 +42,7 @@ export class ScheduleComponent implements OnInit, OnDestroy{
         this.subscriptions = [
             this.scheduleService.selected$.subscribe(),
             this.scheduleService.schedule$.subscribe(),
+            this.scheduleService.staff$.subscribe(),
             this.staffSerice.staff$.subscribe()
         ];
     }
@@ -65,6 +66,8 @@ export class ScheduleComponent implements OnInit, OnDestroy{
     
     assignStaff(staff: string[]){
         console.log(staff);
+        this.scheduleService.assignStaff(staff);
+        this.closeAssign();
     }
 
     ngOnDestroy(){

@@ -11,14 +11,16 @@ export interface State {
   date: Date,
   schedule: ScheduleItem[],
   selected: any,
-  staff: Staff[];
+  staff: Staff[],
+  list: any
 }
 
 const state: State = {
   date: undefined,
   schedule: undefined,
   selected: undefined,
-  staff: undefined
+  staff: undefined,
+  list: undefined
 };
 
 export class Store {

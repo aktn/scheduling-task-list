@@ -34,7 +34,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
     `
 })
 
-export class ScheduleAssignComponent implements OnInit{
+export class ScheduleAssignComponent{
 
     @Input() staff: Staff[];
     private assigned: string[] = [];
@@ -46,10 +46,6 @@ export class ScheduleAssignComponent implements OnInit{
     form = this.fb.group({
         name: ['']
     });
-
-    ngOnInit(){
-
-    }
 
     @Output() create = new EventEmitter<Staff>();
     createStaff(){
@@ -70,7 +66,7 @@ export class ScheduleAssignComponent implements OnInit{
 
     @Output() assign = new EventEmitter<any>();
     assignStaff(){
-        this.assign.emit(this.assigned);
+        this.assign.emit({['staff']:this.assigned});
     }
 
     @Output() close = new EventEmitter<any>();

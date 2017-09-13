@@ -1,17 +1,18 @@
 import { ScheduleItem } from './../../../shared/services/schedule/schedule.service';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'schedule-section',
     styleUrls: ['schedule-section.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <div class="schedule-section">
             <div class="schedule-section__bar">
                 <span>{{ name }}</span>
             </div>
             <div>
-                <div class="schedule-section__task" *ngIf="section.tasks; else assignTask">
-                    <span>{{ section.tasks }}</span>
+                <div class="schedule-section__task" *ngIf="section.section; else assignTask">
+                    <span>{{ section.staff }}</span>
                 </div>
                 <ng-template #assignTask>
                     <div class="schedule-section__task" (click)="onSelect()">
