@@ -65,7 +65,6 @@ export class ScheduleComponent implements OnInit, OnDestroy{
     }
     
     assignStaff(staff: string[]){
-        console.log(staff);
         this.scheduleService.assignStaff(staff);
         this.closeAssign();
     }

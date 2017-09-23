@@ -12,7 +12,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
             </div>
             <div>
                 <div class="schedule-section__task" *ngIf="section.section; else assignTask">
-                    <span>{{ section.staff }}</span>
+                    <span>{{ section.staff | join}}</span>
                 </div>
                 <ng-template #assignTask>
                     <div class="schedule-section__task" (click)="onSelect()">

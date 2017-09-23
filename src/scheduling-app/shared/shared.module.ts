@@ -1,3 +1,4 @@
+import { JoinPipe } from './pipes/join.pipe';
 import { StaffService } from './services/staff/staff.service';
 import { ScheduleService } from './services/schedule/schedule.service';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,10 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
         CommonModule
     ],
     declarations: [
-
+        JoinPipe
+    ],
+    exports: [
+        JoinPipe
     ]
 })
 
