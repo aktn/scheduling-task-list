@@ -11,7 +11,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
                 <span>{{ name }}</span>
             </div>
             <div>
-                <div class="schedule-section__task" *ngIf="section.section; else assignTask">
+                <div class="schedule-section__task" *ngIf="section.section; else assignTask" (click)="onSelect(section.staff)">
                     <span>{{ section.staff | join}}</span>
                 </div>
                 <ng-template #assignTask>

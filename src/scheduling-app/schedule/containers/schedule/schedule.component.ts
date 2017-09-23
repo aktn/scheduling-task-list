@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
     template: `
         <div class="schedule">
             <schedule-calendar [date]="date$ | async" (change)="changeDate($event)" (select)="changeSection($event)" [assignStaff]="schedule$ | async"></schedule-calendar>
-            <schedule-assign *ngIf="open" (create)="createStaff($event)" [staff]="staff$ | async" (close)="closeAssign()" (assign)="assignStaff($event)"></schedule-assign>
+            <schedule-assign *ngIf="open" (create)="createStaff($event)" [staff]="staff$ | async" (close)="closeAssign()" (assign)="assignStaff($event)" [selected]="selected$ | async"></schedule-assign>
         </div>
     `
 })
@@ -65,6 +65,7 @@ export class ScheduleComponent implements OnInit, OnDestroy{
     }
     
     assignStaff(staff: string[]){
+        console.log(staff);
         this.scheduleService.assignStaff(staff);
         this.closeAssign();
     }

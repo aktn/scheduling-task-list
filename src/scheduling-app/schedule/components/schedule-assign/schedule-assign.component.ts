@@ -19,6 +19,9 @@ import { FormBuilder, FormControl } from '@angular/forms';
                     </form>
                 </div>
                 <div class="schedule-assign__list">
+                    <span *ngIf="!staff?.length" class="schedule-assign__empty">
+                        No one to assign
+                    </span>
                     <div *ngFor="let s of staff" (click)="toggleName(s.name)" [class.active]="exists(s.name)">
                         {{ s.name }}
                     </div>
@@ -34,14 +37,19 @@ import { FormBuilder, FormControl } from '@angular/forms';
     `
 })
 
-export class ScheduleAssignComponent{
+export class ScheduleAssignComponent implements OnInit{
 
     @Input() staff: Staff[];
+    @Input() selected: any;
     private assigned: string[] = [];
 
     constructor(
         private fb: FormBuilder
     ){}
+
+    ngOnInit(){
+        this.assigned = [...this.selected.assigned];
+    }
 
     form = this.fb.group({
         name: ['']

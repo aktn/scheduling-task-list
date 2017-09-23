@@ -109,6 +109,10 @@ export class ScheduleService{
     }
     
     private updateSection(key: string, payload: ScheduleItem) {
-        return this.db.object(`schedule`).update(payload);
+        return this.db.object(`schedule/${key}`).update(payload);
     }
+
+    list$ = this.section$
+        .map((value: any) => this.store.value[value.type])
+        .do((next: any) => this.store.set('list', next));
 }

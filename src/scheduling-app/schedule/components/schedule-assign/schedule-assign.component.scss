@@ -56,9 +56,9 @@
             &.active {
                 background-image: url(/img/check-active.svg);
             }
-        }
-        &.active {
-            background-image: url(/img/check-active.svg);
+            &:last-child {
+                border-bottom: 0;
+            }
         }
     }
 }
